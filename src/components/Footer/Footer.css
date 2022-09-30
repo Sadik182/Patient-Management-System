@@ -1,0 +1,11 @@
+.footer {
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    color: whitesmoke;
+    margin-top: 30%;
+}
+.footer-title {
+    padding: 10px 20px;
+    font-size: 16px;
+}
