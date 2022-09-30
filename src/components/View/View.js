@@ -20,29 +20,29 @@ const View = () => {
           <td>Fivver</td>
           <td>01715925172</td>
           <td>
-            <Button variant='outline'>Update</Button> {'|'}
+            <Button variant='outline' className="text-primary fw-bold">Update</Button> {'|'}
             <Button variant='outline'>Delete</Button> {'|'}
             <Button variant='outline'>Print</Button>
           </td>
         </tr>
         <tr>
           <td>2</td>
-          <td>Mark</td>
-          <td>Fivver</td>
+          <td>Dark </td>
+          <td>Arssdfr</td>
           <td>01715925172</td>
           <td>
-            <Button variant='outline'>Update</Button> {'|'}
+            <Button variant='outline' className="text-primary fw-bold">Update</Button> {'|'}
             <Button variant='outline'>Delete</Button> {'|'}
             <Button variant='outline'>Print</Button>
           </td>
         </tr>
         <tr>
           <td>3</td>
-          <td>Mark</td>
-          <td>Fivver</td>
+          <td>Jark</td>
+          <td>Srsdfer</td>
           <td>01715925172</td>
           <td>
-            <Button variant='outline'>Update</Button> {'|'}
+            <Button variant='outline' className="text-primary fw-bold">Update</Button> {'|'}
             <Button variant='outline'>Delete</Button> {'|'}
             <Button variant='outline'>Print</Button>
           </td>

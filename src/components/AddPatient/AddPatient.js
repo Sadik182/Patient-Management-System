@@ -5,22 +5,25 @@ import './AddPatient.css'
 const Add_Patient = () => {
   return (
     <Form className="form-container">
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Patient Name</Form.Label>
+      <h1>Add Patient Information</h1>
+      <Form.Group className="mb-3" controlId="">
         <Form.Control type="text" placeholder="Enter Patient Name" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="">
-        <Form.Label>Disece</Form.Label>
         <Form.Control type="text" placeholder="Enter Disece" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="">
-        <Form.Label>Contact</Form.Label>
-        <Form.Control type="text" placeholder="Enter Patient Name" />
+        <Form.Control type="text" placeholder="Enter Address" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="">
+        <Form.Control type="text" placeholder="Enter Contact Number" />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button className="w-100" variant="primary" size="lg"  type="submit">
         Submit
       </Button>
+      
+
     </Form>
   );
 };
