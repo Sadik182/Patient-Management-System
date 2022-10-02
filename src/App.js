@@ -4,9 +4,9 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import View from './components/View/View';
-import AddPatient from './components/AddPatient/AddPatient';
 import Search from './components/Search/Search'
 import Report from './components/Report/Report'
+import AddPatient from './components/AddPatient/AddPatient';
 
 function App() {
   return (
