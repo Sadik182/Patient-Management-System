@@ -1,21 +1,50 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import "./View.css";
 import { Button, Form, InputGroup, Table } from "react-bootstrap";
 
 const View = () => {
+  const [patients, setPatients] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/patient")
+      .then((res) => res.json())
+      .then((data) => setPatients(data));
+  }, []);
+
+  let id = 1;
+
+  const deletePatient = id => {
+    const proceed = window.confirm('Press Ok to confirm Delete');
+    if(proceed) {
+      console.log('Deleting with id', id);
+
+      const url = `http://localhost:5000/patient/${id}`;
+      fetch(url, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.deletedCount > 0) {
+          const remaining = patients.filter(patient => patient._id !== id);
+          setPatients(remaining);
+        }
+      })
+    }
+  }
+
   return (
     <>
       <div className="search_box">
-      <InputGroup className="mt-3">
-        <Form.Control
-          placeholder="Search Patient"
-          aria-label="Search Patient"
-          aria-describedby="basic-addon2"
-        />
-        <Button variant="outline-secondary" id="button-addon2">
-          Button
-        </Button>
-      </InputGroup>
+        <InputGroup className="mt-3">
+          <Form.Control
+            placeholder="Search Patient"
+            aria-label="Search Patient"
+            aria-describedby="basic-addon2"
+          />
+          <Button variant="outline-secondary" id="button-addon2">
+            Button
+          </Button>
+        </InputGroup>
       </div>
       <Table striped bordered hover className="t-body">
         <thead>
@@ -28,48 +57,29 @@ const View = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Fivver</td>
-            <td>01715925172</td>
-            <td>
-              <Button variant="outline" className="text-primary fw-bold">
+          {
+            patients.map(patient => (
+              <tr key={patient._id}>
+                <td>{id ++}</td>
+                <td>{patient.name}</td>
+                <td>{patient.disece}</td>
+                <td>{patient.number}</td>
+                <td>
+                <Button variant="outline" className="text-primary fw-bold">
                 Update
               </Button>{" "}
               {"|"}
-              <Button variant="outline" className="text-danger fw-bold">Delete</Button> {"|"}
-              <Button variant="outline" className="text-success fw-bold">Print</Button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Dark </td>
-            <td>Arssdfr</td>
-            <td>01715925172</td>
-            <td>
-              <Button variant="outline" className="text-primary fw-bold">
-                Update
+              <Button onClick={() => deletePatient(patient._id)} variant="outline" className="text-danger fw-bold">
+                Delete
               </Button>{" "}
               {"|"}
-              <Button variant="outline" className="text-danger fw-bold">Delete</Button> {"|"}
-              <Button variant="outline" className="text-success fw-bold">Print</Button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Jark</td>
-            <td>Srsdfer</td>
-            <td>01715925172</td>
-            <td>
-              <Button variant="outline" className="text-primary fw-bold">
-                Update
-              </Button>{" "}
-              {"|"}
-              <Button variant="outline" className="text-danger fw-bold">Delete</Button> {"|"}
-              <Button variant="outline" className="text-success fw-bold">Print</Button>
-            </td>
-          </tr>
+              <Button variant="outline" className="text-success fw-bold">
+                Print
+              </Button>
+                </td>
+              </tr>
+            ))
+          }
         </tbody>
       </Table>
     </>
