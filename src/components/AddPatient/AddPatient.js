@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import './AddPatient.css';
 
 const AddPatient = () => {
     const addPatient = (event) => {
@@ -7,7 +7,8 @@ const AddPatient = () => {
       const name = event.target.name.value;
       const disece = event.target.disece.value;
       const number = event.target.number.value;
-      const data = { name, disece, number };
+      const gender = event.target.gender.value;
+      const data = { name, disece, number, gender };
 
       //Send to Database
       fetch("http://localhost:5000/patient", {
@@ -28,14 +29,23 @@ const AddPatient = () => {
         });
     };
     return (
-        <div>
-            <form onSubmit={addPatient}>
+        <div className='patient-form'>
+            <form onSubmit={addPatient} >
                 <h1>Add Patient Information</h1>
-                <input type="text" name="name" placeholder="Enter Patient Name" required />
+                <input className='input-tag' type="text" name="name" placeholder="Enter Patient Name" required />
                 <br />
-                <input type="text" name="disece" placeholder="Enter Disece" required /> <br />
-                <input type="text" name="number" placeholder="Enter contact Number" required /> <br />
-                <input type="submit" value="Add Patient" />
+                <input className='input-tag' type="text" name="disece" placeholder="Enter Disece" required /> <br />
+                <input className='input-tag' type="text" name="number" placeholder="Enter contact Number" required /> <br />
+                <div className='gender'>
+                <p>Select Your Gender</p>
+                <input type="radio" name="gender" id="male" value="Male" />
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="Female" />
+                <label for="female">Female</label>
+                <input type="radio" name="gender" id="others" value="Others" />
+                <label for="others">Others</label>
+                </div>
+                <input className='button' type="submit" value="Add Patient" />
             </form>
         </div>
     );

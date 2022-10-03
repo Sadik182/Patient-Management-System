@@ -42,7 +42,7 @@ const View = () => {
             aria-describedby="basic-addon2"
           />
           <Button variant="outline-secondary" id="button-addon2">
-            Button
+            Search
           </Button>
         </InputGroup>
       </div>

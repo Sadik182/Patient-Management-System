@@ -1,0 +1,29 @@
+.patient-form {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 30px;
+    width: 50%;
+    margin: 20px auto;
+}
+.patient-form .gender {
+    margin: 5;
+    padding: 5;
+}
+.patient-form .input-tag {
+    margin: 5px;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.patient-form h1 {
+    color: blue;
+    font-weight: bold;
+    font-size: 50px;
+}
+.button {
+    margin: 5px;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
