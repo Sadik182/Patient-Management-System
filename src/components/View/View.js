@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./View.css";
 import { Button, Form, InputGroup, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const View = () => {
   const [patients, setPatients] = useState([]);
@@ -65,9 +66,12 @@ const View = () => {
                 <td>{patient.disece}</td>
                 <td>{patient.number}</td>
                 <td>
+                <Link to={`/update/${patient._id}`}>
                 <Button variant="outline" className="text-primary fw-bold">
                 Update
-              </Button>{" "}
+              </Button>
+                </Link>
+                {" "}
               {"|"}
               <Button onClick={() => deletePatient(patient._id)} variant="outline" className="text-danger fw-bold">
                 Delete

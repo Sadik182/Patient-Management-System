@@ -7,6 +7,7 @@ import View from './components/View/View';
 import Search from './components/Search/Search'
 import Report from './components/Report/Report'
 import AddPatient from './components/AddPatient/AddPatient';
+import Update from './components/Update/Update';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path='/insert' element={<AddPatient></AddPatient>}></Route>
       <Route path='/search' element={<Search></Search>}></Route>
       <Route path='/report' element={<Report></Report>}></Route>
+      <Route path='/update/:id' element={<Update></Update>}></Route>
      </Routes>
      <Footer></Footer>
     </div>
