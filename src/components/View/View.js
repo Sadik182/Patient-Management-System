@@ -54,6 +54,7 @@ const View = () => {
             <th>Patient Name</th>
             <th>Disecse</th>
             <th>Contact</th>
+            <th>Age</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -65,6 +66,7 @@ const View = () => {
                 <td>{patient.name}</td>
                 <td>{patient.disece}</td>
                 <td>{patient.number}</td>
+                <td>{patient.age}</td>
                 <td>
                 <Link to={`/update/${patient._id}`}>
                 <Button variant="outline" className="text-primary fw-bold">

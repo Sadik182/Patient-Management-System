@@ -1,84 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Update = () => {
-  const { id } = useParams();
-  const [patients, setPatients] = useState({});
-  useEffect(() => {
-    const url = `http://localhost:5000/patient/${id}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setPatients(data));
-  }, []);
+  const [name, setName] = useState('');
+  const [disece, setDisece] = useState('');
+  const [number, setNumber] = useState('');
+  const [age, setAge] = useState('');
+  const {id} = useParams();
+  useEffect( () => {
+    getPatientDetails();
+  },[]);
 
-  const UpdatePatient = (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const disece = event.target.disece.value;
-    const number = event.target.number.value;
-    const gender = event.target.gender.value;
-    const data = { name, disece, number, gender };
+  const navigate = useNavigate()
+  const getPatientDetails = async () => {
+    let result = await fetch(`http://localhost:5000/patient/${id}`);
+    result = await result.json();
+    console.warn(result);
+    setName(result.name);
+    setDisece(result.disece);
+    setNumber(result.number);
+    setAge(result.age);
+  }
 
-    //Send to Database
-    const url = `http://localhost:5000/patient/${id}`;
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Success:", data);
-        alert("Patient Updated Successfully");
-        event.target.reset();
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  const UpdatePatient = async() => {
+  let result = await fetch(`http://localhost:5000/patient/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'Application/json'
+    },
+    body: JSON.stringify({name, disece, number, age})
+  });
+  result = await result.json()
+  if(result) {
+    navigate('/view');
+    alert('Data Update');
+  }
+     
   };
   return (
     <div>
-      <h1>This is Update page</h1>
-      <h2>Updating Patient is {patients.name}</h2>
-      <form onSubmit={UpdatePatient}>
-        <h1>Add Patient Information</h1>
-        <input
-          className="input-tag"
-          type="text"
-          name="name"
-          placeholder="Enter Patient Name"
-          required
-        />
-        <br />
-        <input
-          className="input-tag"
-          type="text"
-          name="disece"
-          placeholder="Enter Disece"
-          required
-        />{" "}
-        <br />
-        <input
-          className="input-tag"
-          type="text"
-          name="number"
-          placeholder="Enter contact Number"
-          required
-        />{" "}
-        <br />
-        <div className="gender">
-          <p>Select Your Gender</p>
-          <input type="radio" name="gender" id="male" value="Male" />
-          <label for="male">Male</label>
-          <input type="radio" name="gender" id="female" value="Female" />
-          <label for="female">Female</label>
-          <input type="radio" name="gender" id="others" value="Others" />
-          <label for="others">Others</label>
-        </div>
-        <input  type="submit" value="Updat" />
-      </form>
+      <h1>Update Patient Information</h1>
+   
+        <input type="text" name="name" id="" value={name} placeholder='Enter Patient Name' onChange={(e) => {setName(e.target.value)}} /> <br />
+        <input type="text" name="disece" id="" value={disece} placeholder='Enter Disece' onChange={(e) => { setDisece(e.target.value)
+        }}/> <br />
+        <input type="text" name="number" id="" value={number} placeholder='Enter Contact Number' onChange={(e) => {setNumber(e.target.value)}}  /> <br />
+        <input type="text" name="age" id="" value={age} placeholder='Enter Age' onChange={(e) => {setAge(e.target.value)}} /> <br />
+        
+        <button onClick={UpdatePatient}>Update</button>
     </div>
   );
 };

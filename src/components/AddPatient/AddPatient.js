@@ -1,14 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AddPatient.css';
 
 const AddPatient = () => {
+  const navigate = useNavigate()
     const addPatient = (event) => {
       event.preventDefault();
       const name = event.target.name.value;
       const disece = event.target.disece.value;
       const number = event.target.number.value;
-      const gender = event.target.gender.value;
-      const data = { name, disece, number, gender };
+      const age = event.target.age.value;
+      const data = { name, disece, number, age };
 
       //Send to Database
       fetch("http://localhost:5000/patient", {
@@ -22,6 +24,7 @@ const AddPatient = () => {
         .then((data) => {
           console.log("Success:", data);
           alert("Patient Added Successfully");
+          navigate('/view');
           event.target.reset();
         })
         .catch((error) => {
@@ -36,15 +39,8 @@ const AddPatient = () => {
                 <br />
                 <input className='input-tag' type="text" name="disece" placeholder="Enter Disece" required /> <br />
                 <input className='input-tag' type="text" name="number" placeholder="Enter contact Number" required /> <br />
-                <div className='gender'>
-                <p>Select Your Gender</p>
-                <input type="radio" name="gender" id="male" value="Male" />
-                <label for="male">Male</label>
-                <input type="radio" name="gender" id="female" value="Female" />
-                <label for="female">Female</label>
-                <input type="radio" name="gender" id="others" value="Others" />
-                <label for="others">Others</label>
-                </div>
+                <input className='input-tag' type="text" name="age" placeholder="Enter Age" required /> <br />
+                
                 <input className='button' type="submit" value="Add Patient" />
             </form>
         </div>
