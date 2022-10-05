@@ -1,7 +1,11 @@
 .t-body {
-    margin: 30px 0;
+    margin: 20px 0;
 }
 .search_box {
-    width: 50%;
+    width: 40%;
     margin: auto;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid green;
+    border-radius: 8px;
 }

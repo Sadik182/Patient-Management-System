@@ -1,16 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./View.css";
-import { Button, Form, InputGroup, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const View = () => {
   const [patients, setPatients] = useState([]);
   useEffect(() => {
+    viewPatients();
+  }, []);
+
+  const viewPatients = () => {
     fetch("http://localhost:5000/patient")
       .then((res) => res.json())
       .then((data) => setPatients(data));
-  }, []);
+  }
 
   let id = 1;
 
@@ -31,21 +35,27 @@ const View = () => {
         }
       })
     }
+  };
+
+  const handleSearch = async(e) => {
+    let key = e.target.value;
+    if(key) {
+      let result = await fetch(`http://localhost:5000/search=${key}`)
+      result = await result.json();
+      if(result) {
+        setPatients(result);
+      }
+    }
+    else {
+      viewPatients();
+    }
+    
   }
 
   return (
     <>
-      <div className="search_box">
-        <InputGroup className="mt-3">
-          <Form.Control
-            placeholder="Search Patient"
-            aria-label="Search Patient"
-            aria-describedby="basic-addon2"
-          />
-          <Button variant="outline-secondary" id="button-addon2">
-            Search
-          </Button>
-        </InputGroup>
+      <div>
+        <input type="text" id="" placeholder="Search Patient Here" className="search_box" onChange={handleSearch}/>
       </div>
       <Table striped bordered hover className="t-body">
         <thead>
