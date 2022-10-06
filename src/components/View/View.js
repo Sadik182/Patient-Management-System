@@ -40,7 +40,7 @@ const View = () => {
   const handleSearch = async(e) => {
     let key = e.target.value;
     if(key) {
-      let result = await fetch(`http://localhost:5000/search=${key}`)
+      let result = await fetch(`http://localhost:5000/search/${key}`)
       result = await result.json();
       if(result) {
         setPatients(result);

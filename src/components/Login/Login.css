@@ -1,0 +1,11 @@
+.login_form {
+    width: 35%;
+    margin: 30px auto;
+    border: 1px solid;
+    padding: 15px;
+    border-radius: 5px;
+}
+.login_form .form-label {
+    float: left;
+    
+}
