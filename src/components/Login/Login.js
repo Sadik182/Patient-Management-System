@@ -1,3 +1,5 @@
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -22,10 +24,10 @@ const Login = () => {
           <Form.Control type="password" placeholder="Enter Password" />
         </Form.Group>
         <Button variant="outline-primary" className="me-3">Google Login</Button> 
-        <Button variant='outline-primary'>Facebook Login</Button>
-        <p>Don't Have an Account <Link to='/register'>Create Account</Link>  </p>
-        <Button variant="primary" type="submit">
-          Login
+        <Button variant='outline-primary'>Facebook Login </Button>
+        <p>Don't have an account? <Link to='/register'>Create Account</Link>  </p>
+        <Button variant="primary" type="submit" size='lg'>
+          Login <FontAwesomeIcon icon={faSignIn} />
         </Button>
       </Form>
     </div>

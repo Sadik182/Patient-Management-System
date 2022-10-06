@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './Update.css'
 
 const Update = () => {
   const [name, setName] = useState('');
@@ -39,15 +40,16 @@ const Update = () => {
   };
   return (
     <div>
-      <h1>Update Patient Information</h1>
-   
-        <input type="text" name="name" id="" value={name} placeholder='Enter Patient Name' onChange={(e) => {setName(e.target.value)}} /> <br />
-        <input type="text" name="disece" id="" value={disece} placeholder='Enter Disece' onChange={(e) => { setDisece(e.target.value)
-        }}/> <br />
-        <input type="text" name="number" id="" value={number} placeholder='Enter Contact Number' onChange={(e) => {setNumber(e.target.value)}}  /> <br />
-        <input type="text" name="age" id="" value={age} placeholder='Enter Age' onChange={(e) => {setAge(e.target.value)}} /> <br />
+      <h1 className='text-primary fs-1 my-2'>Update Patient Information</h1>
+       <div className="update-form">
+          <input type="text" name="name" id="" value={name} placeholder='Enter Patient Name' onChange={(e) => {setName(e.target.value)}} /> <br />
+          <input type="text" name="disece" id="" value={disece} placeholder='Enter Disece' onChange={(e) => { setDisece(e.target.value)
+          }}/> <br />
+          <input type="text" name="number" id="" value={number} placeholder='Enter Contact Number' onChange={(e) => {setNumber(e.target.value)}}  /> <br />
+          <input type="text" name="age" id="" value={age} placeholder='Enter Age' onChange={(e) => {setAge(e.target.value)}} /> <br />
         
-        <button onClick={UpdatePatient}>Update</button>
+        <button className='update-button me-3' onClick={UpdatePatient}>Update </button>
+      </div>
     </div>
   );
 };
