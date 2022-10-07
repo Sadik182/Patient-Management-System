@@ -3,19 +3,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../firebase/firebase.init";
 import './Login.css'
 
 const Login = () => {
   const emailRef = useRef('');
   const passwordRef = useRef('');
+  const navigate = useNavigate()
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
 
   const handleLogin = e => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     console.log(email, password);
+    signInWithEmailAndPassword(email, password)
 
+  }
+  if(user) {
+    navigate('/home');
   }
   return (
     <div>

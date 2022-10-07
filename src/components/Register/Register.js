@@ -1,29 +1,57 @@
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from "../firebase/firebase.init";
 
 const Register = () => {
+  const navigate = useNavigate()
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
+
+  const nameRef = useRef('');
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
+  const confirmPasswordRef = useRef('');
+
+  const handleRegister = event => {
+    event.preventDefault();
+    const fullName = nameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+    if(password === confirmPassword) {
+      createUserWithEmailAndPassword(email, password);
+    }
+  }
+  if(user) {
+    navigate('/login');
+  }
   return (
     <div>
       <h2 className="my-3">If You Don't Have an Account Please Register</h2>
-      <Form className="login_form">
+      <Form onSubmit={handleRegister} className="login_form">
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label className="form-label">Full Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Your Full Name" />
+          <Form.Control ref={nameRef} type="text" placeholder="Enter Your Full Name" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label className="form-label">Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter Your Email" />
+          <Form.Control ref={emailRef} type="email" placeholder="Enter Your Email" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter Password" />
+          <Form.Control ref={passwordRef} type="password" placeholder="Enter Password" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Confirm Password" />
+          <Form.Control ref={confirmPasswordRef} type="password" placeholder="Confirm Password" />
         </Form.Group>
         <Button variant="primary" type="submit" size="lg">
           Register <FontAwesomeIcon icon={faUserPlus} />

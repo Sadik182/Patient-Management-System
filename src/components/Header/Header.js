@@ -1,4 +1,4 @@
-import { faRegistered, faSignIn, faSignInAlt, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faRegistered, faSignIn, faSignInAlt, faSignOut, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
@@ -20,6 +20,9 @@ const Header = () => {
         </Container>
         <Link to="/login">
            <FontAwesomeIcon icon={faSignIn} size='lg' title='Login'/> 
+        </Link>
+        <Link to="/login">
+           <FontAwesomeIcon icon={faSignOut} size='lg' title='Log Out'/> 
         </Link>
         <Link to="/register">
           <FontAwesomeIcon icon={faUserPlus} size="lg" title="Register"/> 
