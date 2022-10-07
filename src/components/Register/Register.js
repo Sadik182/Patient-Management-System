@@ -25,16 +25,17 @@ const Register = () => {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control type="password" placeholder="Confirm Password" />
         </Form.Group>
+        <Button variant="primary" type="submit" size="lg">
+          Register <FontAwesomeIcon icon={faUserPlus} />
+        </Button>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>{" "}
+        </p>
+        <div>------------OR------------</div>
         <Button variant="outline-primary" className="me-3">
           Google Login
         </Button>
         <Button variant="outline-primary">Facebook Login </Button>
-        <p>
-          Already have an account? <Link to="/login">Login</Link>{" "}
-        </p>
-        <Button variant="primary" type="submit" size="lg">
-          Register <FontAwesomeIcon icon={faUserPlus} />
-        </Button>
       </Form>
     </div>
   );
