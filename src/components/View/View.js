@@ -71,7 +71,7 @@ const View = () => {
         </thead>
         <tbody>
           {
-            patients.map(patient => (
+           patients.length > 0 ? patients.map(patient => (
               <tr key={patient._id}>
                 <td>{id ++}</td>
                 <td>{patient.name}</td>
@@ -95,7 +95,9 @@ const View = () => {
               </Button>
                 </td>
               </tr>
-            ))
+            )):
+            <h1 className='text-end my-4 text-danger'>No Result Found</h1>
+
           }
         </tbody>
       </Table>
