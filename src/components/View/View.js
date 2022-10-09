@@ -43,6 +43,7 @@ const View = () => {
       let result = await fetch(`http://localhost:5000/search/${key}`)
       result = await result.json();
       if(result) {
+        console.log('Result from server',result);
         setPatients(result);
       }
     }

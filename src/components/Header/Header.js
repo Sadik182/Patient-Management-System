@@ -23,18 +23,21 @@ const Header = () => {
   }
   return (
     <div className="header">
-      <Navbar bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">SR</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <nav className="ms-auto navbar">
             <Link to="/">Home</Link>
             <Link to="/about">About Us</Link>
             <Link to="/view">View</Link>
             <Link to="/insert">Add Patient</Link>
           </nav>
+        </Navbar.Collapse>
         </Container>
         {user ? (
-           <Link to="/home">
+           <Link to="/home" className="fs-5">
            <FontAwesomeIcon icon={faSignOut} size="lg" title="Log Out" onClick={logOut}/>
          </Link>
          

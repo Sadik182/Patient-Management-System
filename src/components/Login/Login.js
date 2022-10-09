@@ -13,9 +13,9 @@ const Login = () => {
   const passwordRef = useRef("");
   const navigate = useNavigate();
   const location = useLocation();
-  const [signInWithEmailAndPassword, loading, error] =
+  const [signInWithEmailAndPassword,emailUser, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, user] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, GoogleUser] = useSignInWithGoogle(auth);
 
   const from = location.state?.from?.pathname || "/";
   const GoogleLogin = (e) => {
@@ -32,7 +32,10 @@ const Login = () => {
     console.log(email, password);
     signInWithEmailAndPassword(email, password);
   };
-  if (user) {
+  if (GoogleUser) {
+    navigate(from, { replace: true });
+  }
+  if (emailUser) {
     navigate(from, { replace: true });
   }
   return (
